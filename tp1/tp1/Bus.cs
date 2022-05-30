@@ -15,7 +15,7 @@ namespace tp1
 
         public override string Report()
         {
-            return String.Format("-Colectivo con {1} pasajeros.", NumeroPasajeros);
+            return String.Format("-Omnibus con {0} pasajeros.", NumeroPasajeros);
         }
 
     }
