@@ -141,26 +141,27 @@ namespace tp1
                                     break;
 
 
+                               
 
-
-                                default:
-                                    
-                                    ShowTransportAddMenu();
-                                    InvalidOption();
-
-                                    break;
+                            
 
                                 case "N":
 
-                                   
+                                    ShowMainMenu();
                                     break;
                                 case "X":
                                    
                                     ShowExitMessage();
                                     return;
+                                default:
 
+                                    ShowTransportAddMenu();
+                                    InvalidOption();
+
+                                    break;
                             }
                         }
+                        
                         break;
 
 
@@ -199,6 +200,9 @@ namespace tp1
                         }
                         break;
 
+                   
+
+
                     case "X":
                       
                         ShowExitMessage();
@@ -236,7 +240,7 @@ namespace tp1
                     taxiCount++;
                     transports.Add(new Taxi(Passenger));
                     Console.WriteLine("{0} agregado con exito.", vehicle);
-                    Console.WriteLine("Van {0} {1} ", taxiCount,vehicle);
+                    Console.WriteLine("Van {0} {1}s ", taxiCount,vehicle);
                     Console.ReadLine();
 
                 }
@@ -245,7 +249,7 @@ namespace tp1
                     busCount++;
                     transports.Add(new Bus(Passenger));
                     Console.WriteLine("{0} agregado con exito.", vehicle);
-                    Console.WriteLine("Van {0} {1}s ", busCount, vehicle);
+                    Console.WriteLine("Van {0} {1} ", busCount, vehicle);
                     Console.ReadLine();
 
                 }
