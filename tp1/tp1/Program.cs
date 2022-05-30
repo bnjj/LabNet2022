@@ -15,8 +15,8 @@ namespace tp1
             List<Transport> transports = new List<Transport>();
             bool CatchTryParse;
             string input = null,
-             exitButton = "X",
-             goBackButton = "N";
+            exitButton = "X",
+            goBackButton = "N";
             int taxiCount = 0;
             int taxiPassengers = 0;
             int busCount = 0;
@@ -26,8 +26,8 @@ namespace tp1
             int maxTaxiPassengersAmount = 4;
             int maxBusPassengersAmount = 100;
 
-
-            ShowMainMenu();
+        
+            Menu.ShowMainMenu();
             while (input != exitButton)
             {
 
@@ -38,8 +38,8 @@ namespace tp1
 
 
                     case "1":
-                        
-                        ShowTransportAddMenu();
+
+                        Menu.ShowTransportAddMenu();
 
                         while (input !=  goBackButton)
                         {
@@ -49,114 +49,27 @@ namespace tp1
 
                                 case "1":
                                   
-                                   if (taxiCount < maxTaxiAmount)
-                                   {
-                                       
-                                        while(taxiCount<maxTaxiAmount)
-                                        {
-                                           
-                                            ShowNewTaxiMenu();
-                                            input=Console.ReadLine();
-                                            CatchTryParse = int.TryParse(input, out taxiPassengers);
-                                            if(CatchTryParse == true )
-                                            { 
-                                                if (taxiPassengers >= 0 && taxiPassengers <= maxTaxiPassengersAmount && taxiCount < maxTaxiAmount)
-                                                {
-                                                    AddVehicle(taxiPassengers,taxiCount,"Taxi");
-                                                }
-                                                else
-                                                {
-                                                    TooMuchPassengersMessage();
-                                                    Console.ReadLine();
-                                                }
-                                          
-                                              
-                                            }
-                                            else if( input.ToUpper() == "M")
-                                            {
-                                                
-                                                IncompleteListMessage(taxiCount,"Taxis");
-                                                Console.ReadLine();
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                InvalidOption();
-                                                Console.ReadLine();    
-                                            }
-
-                                        }
-                                   }
-                                   else
-                                   {
-                                        TransportsAlreadyRegisteredMessage("Taxis");                                      
-                                   }
+                                    CheckIfTaxiCanbeAdded();
                                    break;
 
                                     
                                 case "2":
 
-                                    if (busCount < maxBusAmount)
-                                    {
-
-                                        while (busCount < maxBusAmount)
-                                        {
-
-                                            ShowNewBusMenu();
-                                            input = Console.ReadLine();
-                                            CatchTryParse = int.TryParse(input, out busPassengers);
-                                            if (CatchTryParse == true)
-                                            {
-                                                if (busPassengers >= 0 && busPassengers <= maxBusPassengersAmount && busCount < maxBusAmount)
-                                                {
-                                                    AddVehicle(busPassengers, busCount, "Bus");
-                                                }
-                                                else
-                                                {
-                                                    TooMuchPassengersMessage();
-                                                    Console.ReadLine();
-                                                }
-
-
-                                            }
-                                            else if (input.ToUpper() == "M")
-                                            {
-
-                                                IncompleteListMessage(busCount, "Omnibus");
-                                                Console.ReadLine();
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                InvalidOption();
-                                                Console.ReadLine();
-                                            }
-
-                                        }
-                                    }
-                                    else
-                                    {
-                                        TransportsAlreadyRegisteredMessage("Omnibus");
-                                    }
+                                    CheckIfBusCanBeAdded();
                                     break;
-
-
-                               
-
-                            
 
                                 case "N":
 
-                                    ShowMainMenu();
+                                    Menu.ShowMainMenu();
                                     break;
                                 case "X":
-                                   
-                                    ShowExitMessage();
+
+                                    Menu.ShowExitMessage();
                                     return;
                                 default:
 
-                                    ShowTransportAddMenu();
-                                    InvalidOption();
+                                    Menu.ShowTransportAddMenu();
+                                    Menu.InvalidOption();
 
                                     break;
                             }
@@ -165,15 +78,15 @@ namespace tp1
                         break;
 
 
-                    case "2":
+                        case "2":
 
                         PrintTransportList();
 
                         break;
 
-                    case "8":
-                        
-                        ShowListDeleteMenu();
+                        case "8":
+
+                        Menu.ShowListDeleteMenu();
                         
                         while(input != goBackButton)
                         {
@@ -186,10 +99,14 @@ namespace tp1
                                     
                                     break;
 
+                                case "N":
+                                    Menu.ShowMainMenu();
+                                    break;
+
                                 default :
-                                    
-                                    ShowListDeleteMenu();
-                                    InvalidOption();
+
+                                    Menu.ShowListDeleteMenu();
+                                    Menu.InvalidOption();
                                     
                                     break;
 
@@ -204,15 +121,15 @@ namespace tp1
 
 
                     case "X":
-                      
-                        ShowExitMessage();
+
+                        Menu.ShowExitMessage();
 
                         break;
+
                     default:
 
-                        
-                        ShowMainMenu();
-                        InvalidOption();
+                        Menu.ShowMainMenu();
+                        Menu.InvalidOption();
                         break;
 
 
@@ -226,10 +143,23 @@ namespace tp1
 
 
 
+            void UserOption()
+            {
+                input = Console.ReadLine().ToUpper();
+
+            }
 
 
+            void DeleteAllVehicles()
+            {
+                Console.Clear();
+                transports.Clear();
+                taxiCount = 0;
+                busCount = 0;
+                Console.WriteLine("La lista fue borrada con Exito.");
 
-
+                 input = goBackButton;
+            }
 
 
 
@@ -257,21 +187,12 @@ namespace tp1
             }
 
 
-
-            void DeleteAllVehicles()
-            {
-                Console.Clear();
-                transports.Clear();
-                Console.WriteLine("La lista fue borrada con Exito.");
-
-                input = goBackButton;
-            }
-
-
             void PrintTransportList()
             {
                 Console.Clear();
                 Console.WriteLine("Menu Transporte \n");
+
+               
                 foreach (Transport item in transports)
                 {
 
@@ -284,102 +205,101 @@ namespace tp1
             }
 
 
-
-            void UserOption()
+            void CheckIfTaxiCanbeAdded()
             {
-                input = Console.ReadLine().ToUpper();
+                if (taxiCount < maxTaxiAmount)
+                {
+
+                    while (taxiCount < maxTaxiAmount)
+                    {
+
+                        Menu.ShowNewTaxiMenu();
+                        input = Console.ReadLine();
+                        CatchTryParse = int.TryParse(input, out taxiPassengers);
+                        if (CatchTryParse == true)
+                        {
+                            if (taxiPassengers >= 0 && taxiPassengers <= maxTaxiPassengersAmount && taxiCount < maxTaxiAmount)
+                            {
+                                AddVehicle(taxiPassengers, taxiCount, "Taxi");
+                            }
+                            else
+                            {
+                                Menu.TooMuchPassengersMessage();
+                                Console.ReadLine();
+                            }
+
+
+                        }
+                        else if (input.ToUpper() == goBackButton)
+                        {
+
+                            Menu.IncompleteListMessage(taxiCount, "Taxis");
+
+                            break;
+                        }
+                        else
+                        {
+                            Menu.InvalidOption();
+                            Console.ReadLine();
+                        }
+
+                    }
+                }
+                else
+                {
+                    Menu.TransportsAlreadyRegisteredMessage("Taxis");
+                }
                
             }
-            void InvalidOption()
+            void CheckIfBusCanBeAdded()
             {
-                Console.WriteLine("\n Por favor seleccione una opcion valida ");
-                Console.Write("Opcion:");
+                if (busCount < maxBusAmount)
+                {
+
+                    while (busCount < maxBusAmount)
+                    {
+
+                        Menu.ShowNewBusMenu();
+                        input = Console.ReadLine();
+                        CatchTryParse = int.TryParse(input, out busPassengers);
+                        if (CatchTryParse == true)
+                        {
+                            if (busPassengers >= 0 && busPassengers <= maxBusPassengersAmount && busCount < maxBusAmount)
+                            {
+                                AddVehicle(busPassengers, busCount, "Bus");
+                            }
+                            else
+                            {
+                                Menu.TooMuchPassengersMessage();
+                                Console.ReadLine();
+                            }
+
+
+                        }
+                        else if (input.ToUpper() == goBackButton)
+                        {
+
+                            Menu.IncompleteListMessage(busCount, "Omnibus");
+
+                            break;
+                        }
+                        else
+                        {
+                            Menu.InvalidOption();
+                            Console.ReadLine();
+                        }
+
+                    }
+                }
+                else
+                {
+                    Menu.TransportsAlreadyRegisteredMessage("Omnibus");
+                }
             }
-
-
-
-            void ShowMainMenu()
-            {
-                Console.Clear();
-                Console.WriteLine("Menu Transporte \n");
-                Console.WriteLine("Ingrese una opcion \n");
-                Console.WriteLine("1.Ingresar vehiculos");
-                Console.WriteLine("2.Visualizar vehiculos ");
-                Console.WriteLine("8.Limpiar lista de  vehiculos ");
-                Console.WriteLine("X.Salir del programa\n");
-
-                Console.Write("Opcion:");
-
-            }
-
-            void ShowTransportAddMenu()
-            {
-                Console.Clear();
-                Console.WriteLine("Menu Transporte \n");
-                Console.WriteLine("Que vehiculo le gustaria ingresar \n");
-                Console.WriteLine("1.Taxi");
-                Console.WriteLine("2.Omnibus");
-                Console.WriteLine("N.Volver atras");
-                Console.WriteLine("X.Salir del programa\n");
-
-
-                Console.Write("Opcion:");
-
-            }
-
-            void ShowNewTaxiMenu()
-            {
-                Console.Clear();
-                Console.WriteLine("Menu Transporte \n");
-                Console.WriteLine("M.Volver atras \n");
-                Console.WriteLine("Cantidad de Pasajeros del Taxi (0-4)\n");
-
-                Console.Write("Opcion:");
-
-
-            }
-            void ShowNewBusMenu()
-            {
-                Console.Clear();
-                Console.WriteLine("Menu Transporte \n");
-                Console.WriteLine("Cantidad de Pasajeros del Omnibus (0-100)");
-            }
-            void ShowListDeleteMenu() 
-            {
-                Console.Clear();
-                Console.WriteLine("Menu Transporte \n");
-                Console.WriteLine("Esta seguro de eliminar lista?");
-                Console.WriteLine("1.Borrar");
-                Console.WriteLine("N.Volver Atras");
             
-            }
 
-            void ShowExitMessage()
-            {
-                Console.Clear();
-                Console.WriteLine("Menu Transporte \n");
-                Console.WriteLine("Programa terminado presione una tecla para cerrar la consola...");
-                Console.ReadLine();
-            }
 
-            void TransportsAlreadyRegisteredMessage(string vehicle)
-            {
-                Console.Clear();
-                Console.WriteLine("Menu Transporte \n");
-                Console.WriteLine("Todos los {0} estan ya registrados! Limpie la lista e intente nuevamente.",vehicle);
-            }
 
-            void IncompleteListMessage(int vehicleCount,string vehicle)
-            {
-                Console.Clear();
-                Console.WriteLine("Menu Transporte \n");
-                Console.WriteLine("La carga de {1} fue interrumpida.Puede continuarla luego.Se registraron {0} {1} ", vehicleCount,vehicle);
-            }
-
-            void TooMuchPassengersMessage()
-            {   
-                Console.WriteLine("Son muchos pasajeros para este vehiculo.");
-            }
 
 
         }
