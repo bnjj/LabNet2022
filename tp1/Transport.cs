@@ -26,8 +26,17 @@ namespace tp1
             }
         }
 
-
         public abstract string Report();
+        public string Avanzar()
+        {
+            return " ";
+        }
+
+        public string Detenerse()
+        {
+            return " ";
+        }
+        
     }
 
 
