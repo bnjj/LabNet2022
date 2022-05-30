@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace tp1
 {
@@ -40,6 +37,131 @@ namespace tp1
 
         static int  TaxiCount = 0;
         static int BusCount = 0;
+       
+
+        // LOGICA PARA VERIFICAR SI PODEMOS AGREGAR UN TAXI 
+        public static void CheckIfTaxiCanbeAdded()
+        {
+            int taxiPassengers;
+          
+            if (TaxiCount < MaxTaxiAmount)
+            {
+
+                while (TaxiCount < MaxTaxiAmount)
+                {
+
+                    ShowNewTaxiMenu();
+                    Input = Console.ReadLine();
+                    InputIsAnInt = int.TryParse(Input, out taxiPassengers);
+                    if (InputIsAnInt)
+                    {
+                        if (taxiPassengers >= 0 && taxiPassengers <= MaxTaxiPassengersAmount && TaxiCount < MaxTaxiAmount)
+                        {
+
+                             AddVehicle(taxiPassengers, TaxiCount, "Taxi");
+                        }
+                        else
+                        {
+                            TooMuchPassengersMessage();
+                            Console.ReadLine();
+                        }
+
+
+                    }
+                    else if (Input.ToUpper() == GoBackButton)
+                    {
+
+                        IncompleteListMessage(TaxiCount, "Taxis");
+
+                        break;
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("\n Por favor seleccione una opcion valida ");
+                        Console.ReadLine();
+
+                    }
+
+                }
+            }
+            else
+            {
+                TransportsAlreadyRegisteredMessage("Taxis");
+            }
+
+        }
+        // LOGICA PARA VERIFICAR SI PODEMOS AGREGAR UN OMNIBUS
+        public static void CheckIfBusCanBeAdded()
+        {
+            int busPassengers;
+            if (BusCount < MaxBusAmount)
+            {
+
+                while (BusCount < MaxBusAmount)
+                {
+
+                    ShowNewBusMenu();
+                    Input = Console.ReadLine();
+                    InputIsAnInt = int.TryParse(Input, out busPassengers);
+                    if (InputIsAnInt)
+                    {
+                        if (busPassengers >= 0 && busPassengers <= MaxBusPassengersAmount && BusCount < MaxBusAmount)
+                        {
+                            AddVehicle(busPassengers, BusCount, "Bus");
+                        }
+                        else
+                        {
+                            TooMuchPassengersMessage();
+                            Console.ReadLine();
+                        }
+
+
+                    }
+                    else if (Input.ToUpper() == GoBackButton)
+                    {
+
+                        IncompleteListMessage(BusCount, "Omnibus");
+
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n Por favor seleccione una opcion valida ");
+                        Console.ReadLine();
+
+                    }
+
+                }
+            }
+            else
+            {
+                TransportsAlreadyRegisteredMessage("Omnibus");
+            }
+        }
+        // MANEJO DE LISTA AGREGAR ,BORRAR ,MOSTRAR
+        static void  AddVehicle(int Passenger, int count, string vehicle)
+        {
+            if (vehicle == "Taxi")
+            {
+                TaxiCount++;
+                TransportsList.Add(new Taxi(Passenger));
+                Console.WriteLine("{0} agregado con exito.", vehicle);
+                Console.WriteLine("Van {0} {1}s ", TaxiCount, vehicle);
+                Console.ReadLine();
+
+            }
+            else if (vehicle == "Bus")
+            {
+                BusCount++;
+                TransportsList.Add(new Bus(Passenger));
+                Console.WriteLine("{0} agregado con exito.", vehicle);
+                Console.WriteLine("Van {0} {1} ", BusCount, vehicle);
+                Console.ReadLine();
+
+            }
+
+        }
         public static void DeleteAllVehicles()
         {
             Console.Clear();
@@ -51,15 +173,33 @@ namespace tp1
 
             Input = GoBackButton;
         }
-
-        public static void InvalidOption()
+        public static void PrintTransportList()
         {
-            Console.WriteLine("\n Por favor seleccione una opcion valida ");
-            Console.Write("Opcion:");
-          
+            Console.Clear();
+            Console.WriteLine("Menu Transporte \n");
+
+            foreach (Transport item in TransportsList)
+                    
+                {
+
+                Console.WriteLine(item.Report());
+
+            }
+            Console.WriteLine("\nPresione cualquier tecla para volver atras...");
+            Console.WriteLine("\nX.Salir del Programa");
+
         }
 
+     
+        // INPUT PARA MENU
+        public static void UserOption()
+        {
+            Input = Console.ReadLine().ToUpper();
+        }
 
+     
+
+        //MENU OPCIONES
         public static void ShowNewBusMenu()
         {
             Console.Clear();
@@ -120,7 +260,7 @@ namespace tp1
             Console.WriteLine("N.Volver Atras");
 
         }
-
+        // MENSAJES PARA EL USUARIO
         public static void ShowExitMessage()
         {
             Console.Clear();
@@ -147,149 +287,11 @@ namespace tp1
         {
             Console.WriteLine("Son muchos pasajeros para este vehiculo.");
         }
-        public static void CheckIfTaxiCanbeAdded()
+        public static void InvalidOptionMessage()
         {
-            int taxiPassengers;
-          
-            if (TaxiCount < MaxTaxiAmount)
-            {
-
-                while (TaxiCount < MaxTaxiAmount)
-                {
-
-                    ShowNewTaxiMenu();
-                    Input = Console.ReadLine();
-                    InputIsAnInt = int.TryParse(Input, out taxiPassengers);
-                    if (InputIsAnInt)
-                    {
-                        if (taxiPassengers >= 0 && taxiPassengers <= MaxTaxiPassengersAmount && TaxiCount < MaxTaxiAmount)
-                        {
-
-                             AddVehicle(taxiPassengers, TaxiCount, "Taxi");
-                        }
-                        else
-                        {
-                            TooMuchPassengersMessage();
-                            Console.ReadLine();
-                        }
-
-
-                    }
-                    else if (Input.ToUpper() == GoBackButton)
-                    {
-
-                        IncompleteListMessage(TaxiCount, "Taxis");
-
-                        break;
-                    }
-                    else
-                    {
-
-                        Console.WriteLine("\n Por favor seleccione una opcion valida ");
-                        Console.ReadLine();
-
-                    }
-
-                }
-            }
-            else
-            {
-                TransportsAlreadyRegisteredMessage("Taxis");
-            }
+            Console.WriteLine("\n Por favor seleccione una opcion valida ");
+            Console.Write("Opcion:");
 
         }
-
-        static void  AddVehicle(int Passenger, int count, string vehicle)
-        {
-            if (vehicle == "Taxi")
-            {
-                TaxiCount++;
-                TransportsList.Add(new Taxi(Passenger));
-                Console.WriteLine("{0} agregado con exito.", vehicle);
-                Console.WriteLine("Van {0} {1}s ", TaxiCount, vehicle);
-                Console.ReadLine();
-
-            }
-            else if (vehicle == "Bus")
-            {
-                BusCount++;
-                TransportsList.Add(new Bus(Passenger));
-                Console.WriteLine("{0} agregado con exito.", vehicle);
-                Console.WriteLine("Van {0} {1} ", BusCount, vehicle);
-                Console.ReadLine();
-
-            }
-
-        }
-        public static void PrintTransportList()
-        {
-            Console.Clear();
-            Console.WriteLine("Menu Transporte \n");
-
-
-            foreach (Transport item in TransportsList)
-                    
-                {
-
-                Console.WriteLine(item.Report());
-
-            }
-            Console.WriteLine("\nPresione cualquier tecla para volver atras...");
-            Console.WriteLine("\nX.Salir del Programa");
-
-        }
-        public static void CheckIfBusCanBeAdded()
-        {
-            int busPassengers;
-            if (BusCount < MaxBusAmount)
-            {
-
-                while (BusCount < MaxBusAmount)
-                {
-
-                   ShowNewBusMenu();
-                    Input = Console.ReadLine();
-                    InputIsAnInt = int.TryParse(Input, out busPassengers);
-                    if (InputIsAnInt)
-                    {
-                        if (busPassengers >= 0 && busPassengers <= MaxBusPassengersAmount && BusCount < MaxBusAmount)
-                        {
-                            AddVehicle(busPassengers, BusCount, "Bus");
-                        }
-                        else
-                        {
-                           TooMuchPassengersMessage();
-                            Console.ReadLine();
-                        }
-
-
-                    }
-                    else if (Input.ToUpper() == GoBackButton)
-                    {
-
-                        IncompleteListMessage(BusCount, "Omnibus");
-
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n Por favor seleccione una opcion valida ");
-                        Console.ReadLine();
-
-                    }
-
-                }
-            }
-            else
-            {
-                TransportsAlreadyRegisteredMessage("Omnibus");
-            }
-        }
-        public static void UserOption()
-        {
-            Input = Console.ReadLine().ToUpper();
-        }
-
-
     }
 }

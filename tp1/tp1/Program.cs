@@ -12,15 +12,7 @@ namespace tp1
 
         static void Main(string[] args)
         {
-           
-           
-           
-            
-           
-           
-          
 
-        
             Menu.ShowMainMenu();
             while (Menu.Input != Menu.ExitButton)
             {
@@ -63,25 +55,21 @@ namespace tp1
                                 default:
 
                                     Menu.ShowTransportAddMenu();
-                                    Menu.InvalidOption();
+                                    Menu.InvalidOptionMessage();
 
                                     break;
                             }
                         }
-                        
                         break;
-
 
                         case "2":
 
                         Menu.PrintTransportList();
-
                         break;
 
                         case "8":
 
                         Menu.ShowListDeleteMenu();
-                        
                         while(Menu.Input != Menu.GoBackButton)
                         {
                             Menu.UserOption();
@@ -90,7 +78,6 @@ namespace tp1
                                 case "1":
                                     
                                     Menu.DeleteAllVehicles();
-                                    
                                     break;
 
                                 case "N":
@@ -100,65 +87,29 @@ namespace tp1
                                 default :
 
                                     Menu.ShowListDeleteMenu();
-                                    Menu.InvalidOption();
-                                    
+                                    Menu.InvalidOptionMessage();
                                     break;
-
-
-
                             }
-                           
                         }
                         break;
 
-                   
 
-
-                    case "X":
+                        case "X":
 
                         Menu.ShowExitMessage();
-
                         break;
 
-                    default:
+                        default:
 
                         Menu.ShowMainMenu();
-                        Menu.InvalidOption();
+                        Menu.InvalidOptionMessage();
                         break;
-
 
                 }
 
             }
 
-
-
-
-
-
-
-         
-
-           
-
-
-      
-
-
-          
-           
-            
-
-
-
-
-
         }
-
-     
-
-
-
 
     }
 }
