@@ -35,13 +35,14 @@ namespace tp1
 
                                 case "1":
                                   
-                                    Menu.CheckIfTaxiCanbeAdded();
+                                  
+                                    Menu.CheckIfVehicleCanBeAdded(Menu.TaxiCount,"Taxi");
                                    break;
 
                                     
                                 case "2":
 
-                                    Menu.CheckIfBusCanBeAdded();
+                                    Menu.CheckIfVehicleCanBeAdded(Menu.BusCount,"Bus");
                                     break;
 
                                 case "N":

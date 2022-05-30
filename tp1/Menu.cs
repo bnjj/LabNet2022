@@ -35,110 +35,11 @@ namespace tp1
     
         public static List<Transport> TransportsList { get => _transportsList; set => _transportsList = value; }
 
-        static int  TaxiCount = 0;
-        static int BusCount = 0;
+        public static int  TaxiCount = 0;
+        public static int BusCount = 0;
        
 
-        // LOGICA PARA VERIFICAR SI PODEMOS AGREGAR UN TAXI 
-        public static void CheckIfTaxiCanbeAdded()
-        {
-            int taxiPassengers;
-          
-            if (TaxiCount < MaxTaxiAmount)
-            {
-
-                while (TaxiCount < MaxTaxiAmount)
-                {
-
-                    ShowNewTaxiMenu();
-                    Input = Console.ReadLine();
-                    InputIsAnInt = int.TryParse(Input, out taxiPassengers);
-                    if (InputIsAnInt)
-                    {
-                        if (taxiPassengers >= 0 && taxiPassengers <= MaxTaxiPassengersAmount && TaxiCount < MaxTaxiAmount)
-                        {
-
-                             AddVehicle(taxiPassengers, TaxiCount, "Taxi");
-                        }
-                        else
-                        {
-                            TooMuchPassengersMessage();
-                            Console.ReadLine();
-                        }
-
-
-                    }
-                    else if (Input.ToUpper() == GoBackButton)
-                    {
-
-                        IncompleteListMessage(TaxiCount, "Taxis");
-
-                        break;
-                    }
-                    else
-                    {
-
-                        Console.WriteLine("\n Por favor seleccione una opcion valida ");
-                        Console.ReadLine();
-
-                    }
-
-                }
-            }
-            else
-            {
-                TransportsAlreadyRegisteredMessage("Taxis");
-            }
-
-        }
-        // LOGICA PARA VERIFICAR SI PODEMOS AGREGAR UN OMNIBUS
-        public static void CheckIfBusCanBeAdded()
-        {
-            int busPassengers;
-            if (BusCount < MaxBusAmount)
-            {
-
-                while (BusCount < MaxBusAmount)
-                {
-
-                    ShowNewBusMenu();
-                    Input = Console.ReadLine();
-                    InputIsAnInt = int.TryParse(Input, out busPassengers);
-                    if (InputIsAnInt)
-                    {
-                        if (busPassengers >= 0 && busPassengers <= MaxBusPassengersAmount && BusCount < MaxBusAmount)
-                        {
-                            AddVehicle(busPassengers, BusCount, "Bus");
-                        }
-                        else
-                        {
-                            TooMuchPassengersMessage();
-                            Console.ReadLine();
-                        }
-
-
-                    }
-                    else if (Input.ToUpper() == GoBackButton)
-                    {
-
-                        IncompleteListMessage(BusCount, "Omnibus");
-
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n Por favor seleccione una opcion valida ");
-                        Console.ReadLine();
-
-                    }
-
-                }
-            }
-            else
-            {
-                TransportsAlreadyRegisteredMessage("Omnibus");
-            }
-        }
+        
         // MANEJO DE LISTA AGREGAR ,BORRAR ,MOSTRAR
         static void  AddVehicle(int Passenger, int count, string vehicle)
         {
@@ -147,16 +48,18 @@ namespace tp1
                 TaxiCount++;
                 TransportsList.Add(new Taxi(Passenger));
                 Console.WriteLine("{0} agregado con exito.", vehicle);
-                Console.WriteLine("Van {0} {1}s ", TaxiCount, vehicle);
+                Console.WriteLine("Hay {0} {1}s en lista", TaxiCount, vehicle);
+                Console.WriteLine("Presione cualquier tecla para continuar...");
                 Console.ReadLine();
 
             }
             else if (vehicle == "Bus")
             {
+                vehicle="Omnibus";
                 BusCount++;
                 TransportsList.Add(new Bus(Passenger));
                 Console.WriteLine("{0} agregado con exito.", vehicle);
-                Console.WriteLine("Van {0} {1} ", BusCount, vehicle);
+                Console.WriteLine("Hay {0} {1} en lista", BusCount, vehicle);
                 Console.ReadLine();
 
             }
@@ -200,16 +103,16 @@ namespace tp1
      
 
         //MENU OPCIONES
-        public static void ShowNewBusMenu()
+        public static void ShowNewVehicleMenu(int MaxVehiclePassengersAmount,string vehicle)
         {
             Console.Clear();
             Console.WriteLine("Menu Transporte \n");
             Console.WriteLine("N.Volver atras \n");
-            Console.WriteLine("Cantidad de Pasajeros del Omnibus (0-100)\n");
+            Console.WriteLine("Cantidad de Pasajeros del {0} (0-{1})\n",vehicle,MaxVehiclePassengersAmount);
 
             Console.Write("Opcion:");
-
         }
+         
         public static void ShowMainMenu()
         {
             Console.Clear();
@@ -239,17 +142,7 @@ namespace tp1
 
         }
 
-        public static void ShowNewTaxiMenu()
-        {
-            Console.Clear();
-            Console.WriteLine("Menu Transporte \n");
-            Console.WriteLine("N.Volver atras \n");
-            Console.WriteLine("Cantidad de Pasajeros del Taxi (0-4)\n");
-
-            Console.Write("Opcion:");
-
-
-        }
+     
 
         public static void ShowListDeleteMenu()
         {
@@ -272,8 +165,16 @@ namespace tp1
         public static void TransportsAlreadyRegisteredMessage(string vehicle)
         {
             Console.Clear();
+            if(vehicle =="Bus")
+            {
+                vehicle="Omnibus";
+            }
+            if(vehicle =="Taxi")
+            {
+               vehicle="Taxis";
+            }
             Console.WriteLine("Menu Transporte \n");
-            Console.WriteLine("Todos los {0} estan ya registrados! Limpie la lista e intente nuevamente.", vehicle);
+            Console.WriteLine("Todos los {0} estan ya registrados! \nSi desea cargar nuevos datos borre la lista e intente nuevamente.", vehicle);
         }
 
         public static void IncompleteListMessage(int vehicleCount, string vehicle)
@@ -281,6 +182,12 @@ namespace tp1
             Console.Clear();
             Console.WriteLine("Menu Transporte \n");
             Console.WriteLine("La carga de {1} fue interrumpida.Puede continuarla luego.Se registraron {0} {1} ", vehicleCount, vehicle);
+        }
+        public static void CompleteListMessage(string vehicle)
+        {
+            Console.Clear();
+            Console.WriteLine("Menu Transporte \n");
+            Console.WriteLine("La carga de {0} fue completada.Muchas gracias! ", vehicle);
         }
 
         public static void TooMuchPassengersMessage()
@@ -291,7 +198,82 @@ namespace tp1
         {
             Console.WriteLine("\n Por favor seleccione una opcion valida ");
             Console.Write("Opcion:");
+        }
+        
+        // Logica para verificar si podemos agregar un vehiculo
+        public static void CheckIfVehicleCanBeAdded(int VehicleCount,string vehicle)
+        {
+            int passengers;
+            int maxPassengersAmount=0;
+            int maxVehicleAmount=0;
+            if( vehicle=="Taxi")
+            {
+                maxPassengersAmount=Menu.MaxTaxiPassengersAmount;
+                maxVehicleAmount=Menu.MaxTaxiAmount;
+            }
+            if(vehicle=="Bus")
+            {
+                maxPassengersAmount=Menu.MaxBusPassengersAmount; 
+                maxVehicleAmount=Menu.MaxBusAmount;
+            }
+           if(VehicleCount<maxVehicleAmount)
+            { 
+                while(VehicleCount<maxVehicleAmount)
+                { 
 
+                    ShowNewVehicleMenu(maxPassengersAmount,vehicle);
+                    Input = Console.ReadLine();
+                    InputIsAnInt = int.TryParse(Input, out passengers);
+                     if (InputIsAnInt)
+                     {
+                        if (passengers >= 0 && passengers <= maxPassengersAmount && VehicleCount < maxVehicleAmount)
+                        {
+                             VehicleCount++;
+                             AddVehicle(passengers, VehicleCount,vehicle);
+                        }
+                        else if(passengers > maxPassengersAmount )
+                        {
+                            TooMuchPassengersMessage();
+                            Console.ReadLine();
+                        }
+                           if(passengers < 0)
+                            {
+                            Console.WriteLine("Pasajeros negativos??? Imposible");
+                                 Console.ReadLine();
+                            }
+
+                     }
+                     else if (Input.ToUpper() == GoBackButton)
+                     {
+
+                        IncompleteListMessage(VehicleCount,vehicle);
+
+                        break;
+                     }
+                     else
+                     {
+
+                        Console.WriteLine("\n Por favor seleccione una opcion valida ");
+                        Console.ReadLine();
+
+                     }
+                }
+                if(Input.ToUpper() != GoBackButton)
+                { 
+                CompleteListMessage(vehicle);
+                }
+            }
+             else
+            {
+                TransportsAlreadyRegisteredMessage(vehicle);
+            }
         }
     }
-}
+
+
+
+
+
+ }
+    
+
