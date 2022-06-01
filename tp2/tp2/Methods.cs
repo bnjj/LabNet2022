@@ -48,7 +48,7 @@ namespace tp2
                 Console.WriteLine("Solo Chuck Norris puede dividir en 0 mi rey. Mensaje de excepcion --> "+ex.Message);
 
             }
-            catch (Exception ex)
+            catch 
             {
                 Console.WriteLine("Seguro ingreso una letra o no ingreso nada ! -_- ");
             }
@@ -57,6 +57,10 @@ namespace tp2
             }
             return 0;
         }
+
+
+
+
 
     }
 }

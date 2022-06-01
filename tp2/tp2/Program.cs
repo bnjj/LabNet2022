@@ -25,8 +25,25 @@ namespace tp2
 
 
             int resultadoPunto2 = Methods.Division();
-          
+
+            //Punto 3 
+            Console.WriteLine("Punto 3 ");
+            Console.WriteLine("Presiona enter y vamos a tirar una excepcion cualquiera");
             Console.ReadLine();
+            try
+            {
+                Logic.ThrowSomeException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine( ex.Message);
+                Console.WriteLine("Tipo de excepcion : {0}",ex.GetType());
+            }
+            Console.ReadLine();
+
+
+            //Punto 4 
+
 
 
 
