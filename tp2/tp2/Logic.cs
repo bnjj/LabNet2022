@@ -25,7 +25,7 @@ namespace tp2
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-      
+                Console.WriteLine("Tipo de excepcion : {0}", ex.GetType());
             }
             Console.ReadLine();
 
