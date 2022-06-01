@@ -36,9 +36,9 @@ namespace tp2
 
             try
             {
-                Console.WriteLine("Ingrese un divisor");
-                int dividend = int.Parse(Console.ReadLine());
                 Console.WriteLine("Ingrese un dividendo");
+                int dividend = int.Parse(Console.ReadLine());
+                Console.WriteLine("Ingrese un divisor");
                 int divisor = int.Parse(Console.ReadLine());
                 Console.WriteLine("Resultado de la operacion : {0}", dividend / divisor);
                 return dividend / divisor;
