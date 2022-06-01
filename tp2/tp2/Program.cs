@@ -43,8 +43,8 @@ namespace tp2
 
 
             //Punto 4 
-
-
+        
+            Logic.ThrowMyCustomException();
 
 
         }
