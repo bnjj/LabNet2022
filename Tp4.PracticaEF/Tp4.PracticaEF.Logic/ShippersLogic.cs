@@ -47,10 +47,15 @@ namespace Tp4.PracticaEF.Logic
                 Console.WriteLine("Se borro el campo con exito");
 
             }
+            catch(System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                Console.WriteLine("Esta entrada no se puede borrar debido a sus vinculos con una Foreign Key",ex);
+            }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+           
             
         }
         public void Update(Shippers shipper)
