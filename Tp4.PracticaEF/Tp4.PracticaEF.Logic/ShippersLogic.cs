@@ -25,12 +25,13 @@ namespace Tp4.PracticaEF.Logic
             try
             {
                 _context.Shippers.Add(newShipper);
+                Methods.NullCheck(newShipper.CompanyName, "nullCheck");
                 _context.SaveChanges();
             }
             
             catch(Exception ex)
             {
-                Console.WriteLine("No se pudo agregar porque hay un campo requerido que esta vacio.",ex);
+                Console.WriteLine("No se puede dejar vacio un campo requerido",ex);
             }
         }
         public void Delete(int id)
@@ -39,16 +40,18 @@ namespace Tp4.PracticaEF.Logic
             var shipperToDelete = _context.Shippers.Find(id);
           
 
-            try { 
+            try {
+                Methods.NullCheck(shipperToDelete,"idCheck");
                 _context.Shippers.Remove(shipperToDelete);
                 _context.SaveChanges();
-              
+                Console.WriteLine("Se borro el campo con exito");
+
             }
-            catch
+            catch(Exception ex)
             {
-                    throw new CustomException("No se pudo encontrar un ID coincidente");
+                Console.WriteLine(ex.Message);
             }
-            Console.WriteLine("Se borro el campo con exito");
+            
         }
         public void Update(Shippers shipper)
         {
@@ -56,39 +59,29 @@ namespace Tp4.PracticaEF.Logic
 
             var shipperToUpdate = _context.Shippers.Find(shipper.ShipperID);
             
-            if (shipperToUpdate == null)
-            {
                 try
                 {
-                    throw new CustomException("No se pudo encontrar un ID coincidente");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
-               
-            }
-            else
-            {
-                try
-                {
-                    shipperToUpdate.CompanyName = shipper.CompanyName;
-                    shipperToUpdate.Phone = shipper.Phone;
+                Methods.NullCheck(shipperToUpdate,"idCheck");
+                shipperToUpdate.CompanyName = shipper.CompanyName;
+                shipperToUpdate.Phone = shipper.Phone;
                     _context.SaveChanges();
                     Console.WriteLine("Se Actualizo el campo con exito");
 
                 }
-                catch(Exception ex)
+                catch(CustomException ex)
                 {
-                    Console.WriteLine("No se puede enviar un campo requerido vacio.Reintente por favor ", ex);
+                Console.WriteLine(ex.Message);
+                }
+                catch
+                {
+                Console.WriteLine("No se puede dejar vacio un campo requerido");
                 }
                 
-            }
-
-
-
         }
 
-    }
+
+
+     }
+
 }
+

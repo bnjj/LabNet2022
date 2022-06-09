@@ -70,8 +70,6 @@ namespace Tp4.PracticaEF.UI
             Console.WriteLine("Ingrese nombre de empresa");
             string companyName = Console.ReadLine();
             Console.WriteLine("Ingrese el telefono (puede omitir este campo o rellenarlo luego)");
-          
-            
                 var phone= Console.ReadLine();
             
           
