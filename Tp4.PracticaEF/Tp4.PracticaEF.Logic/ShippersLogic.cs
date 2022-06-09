@@ -49,7 +49,7 @@ namespace Tp4.PracticaEF.Logic
             }
             catch(System.Data.Entity.Infrastructure.DbUpdateException ex)
             {
-                Console.WriteLine("Esta entrada no se puede borrar debido a sus vinculos con una Foreign Key",ex);
+                Console.WriteLine("Esta entrada no se puede borrar debido a su relacion con una Foreign Key");
             }
             catch(Exception ex)
             {
