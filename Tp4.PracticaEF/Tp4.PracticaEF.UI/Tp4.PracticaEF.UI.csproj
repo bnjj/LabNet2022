@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tp4.PracticaEF.Common\Tp4.PracticaEF.Commons.csproj">
+      <Project>{E8615B53-8B70-4E82-8D50-A77EC9DF3767}</Project>
+      <Name>Tp4.PracticaEF.Commons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tp4.PracticaEF.Entities\Tp4.PracticaEF.Entities.csproj">
       <Project>{644DE163-79E6-45B0-BC83-F0BE8AA48F53}</Project>
       <Name>Tp4.PracticaEF.Entities</Name>

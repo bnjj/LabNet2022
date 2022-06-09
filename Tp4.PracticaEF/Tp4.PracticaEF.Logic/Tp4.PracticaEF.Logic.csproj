@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tp4.PracticaEF.Common\Tp4.PracticaEF.Commons.csproj">
+      <Project>{E8615B53-8B70-4E82-8D50-A77EC9DF3767}</Project>
+      <Name>Tp4.PracticaEF.Commons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tp4.PracticaEF.Data\Tp4.PracticaEF.Data.csproj">
       <Project>{441B9504-28BF-4E79-AEDC-E8202141BD9D}</Project>
       <Name>Tp4.PracticaEF.Data</Name>

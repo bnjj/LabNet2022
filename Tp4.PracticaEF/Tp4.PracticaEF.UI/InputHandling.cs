@@ -11,7 +11,7 @@ namespace Tp4.PracticaEF.UI
     public class InputHandling
     {
         public static void ShippersAddMenu()
-        {
+        {  
             ShippersLogic shippersLogic = new ShippersLogic();
 
             Console.WriteLine("Nombre de la empresa :");
@@ -37,7 +37,9 @@ namespace Tp4.PracticaEF.UI
             try //falta personalizar id no encontrado o no ingresado
             {
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine("Por favor espere,procesando datos");
                 shippersLogic.Delete(id);
+             
             }
             catch (Exception ex)
             {
@@ -53,7 +55,8 @@ namespace Tp4.PracticaEF.UI
             Console.WriteLine("Ingrese El ID del Shipper a actualizar");
            
               ParseSuccess = int.TryParse(Console.ReadLine(), out int shipperID);
-            while(ParseSuccess !=true)
+            
+            while (ParseSuccess !=true)
             {
                 Console.Clear();
                 Console.WriteLine("Debe ingresar un Numero ID");
@@ -66,11 +69,17 @@ namespace Tp4.PracticaEF.UI
 
             Console.WriteLine("Ingrese nombre de empresa");
             string companyName = Console.ReadLine();
-            Console.WriteLine("Ingrese telefono");
-            string phone = Console.ReadLine();
+            Console.WriteLine("Ingrese el telefono (puede omitir este campo o rellenarlo luego)");
+          
+            
+                var phone= Console.ReadLine();
+            
+          
+            
 
             ShippersLogic shippersLogic = new ShippersLogic();
-           
+            Console.WriteLine("Por favor espere,procesando datos");
+
             shippersLogic.Update(new Shippers
             {
                 

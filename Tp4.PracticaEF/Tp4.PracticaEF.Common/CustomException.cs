@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tp4.PracticaEF.Common
+namespace Tp4.PracticaEF.Commons
 {
-    public class CantBeNullException : Exception
+    public class CustomException : Exception
     {
-        public CantBeNullException(string message)
+        public CustomException(string message)
        : base(message)
         {
         }

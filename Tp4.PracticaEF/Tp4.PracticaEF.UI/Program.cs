@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Tp4.PracticaEF.Logic;
 using Tp4.PracticaEF.Entities;
 
-
 namespace Tp4.PracticaEF.UI
 {
     internal class Program
@@ -15,8 +14,7 @@ namespace Tp4.PracticaEF.UI
         {
            
              UI.InitializeMenu();
-             
-            
+
             Console.ReadLine();
         }
     }

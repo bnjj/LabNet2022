@@ -71,8 +71,9 @@ namespace Tp4.PracticaEF.UI
         {
             if(input == "1")
             {
+                Console.WriteLine("Por favor espere,procesando datos");
                 TerritoriesLogic territoriesLogic = new TerritoriesLogic();
-
+              
                 Console.WriteLine("Descripcion ========================================= TerritoryID == RegionID");
                 foreach (var territories in territoriesLogic.GetAll())
                 {
@@ -82,11 +83,12 @@ namespace Tp4.PracticaEF.UI
             }
             else if(input == "2")
             {
+                Console.WriteLine("Por favor espere,procesando datos");
                 ShippersLogic shippersLogic = new ShippersLogic();
                 Console.WriteLine($"ID-Empresa --------- Telefono");
                 foreach (var shippers in shippersLogic.GetAll())
                 {
-                   
+                    
                     Console.WriteLine($"-{shippers.ShipperID}-{shippers.CompanyName}-{shippers.Phone}-");
                 }
             }

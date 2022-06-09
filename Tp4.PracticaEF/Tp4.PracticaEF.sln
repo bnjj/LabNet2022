@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tp4.PracticaEF.Entities", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tp4.PracticaEF.Logic", "Tp4.PracticaEF.Logic\Tp4.PracticaEF.Logic.csproj", "{90C0012C-B2EA-4DD4-9F0B-B905C45E2F35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tp4.PracticaEF.Common", "Tp4.PracticaEF.Common\Tp4.PracticaEF.Common.csproj", "{E8615B53-8B70-4E82-8D50-A77EC9DF3767}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tp4.PracticaEF.Commons", "Tp4.PracticaEF.Common\Tp4.PracticaEF.Commons.csproj", "{E8615B53-8B70-4E82-8D50-A77EC9DF3767}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
