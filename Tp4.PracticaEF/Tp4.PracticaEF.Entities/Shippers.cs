@@ -12,6 +12,7 @@ using System.ComponentModel.DataAnnotations.Schema;
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int ShipperID { get; set; }
 
         [Required]

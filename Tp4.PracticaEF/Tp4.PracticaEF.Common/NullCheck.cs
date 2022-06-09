@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tp4.PracticaEF.Commons;
 
-namespace Tp4.PracticaEF.Logic
+
+namespace Tp4.PracticaEF.Commons
 {
    public class Methods
     {

@@ -10,6 +10,7 @@ namespace Tp4.PracticaEF.UI
 {
     public class InputHandling
     {
+        
         public static void ShippersAddMenu()
         {  
             ShippersLogic shippersLogic = new ShippersLogic();

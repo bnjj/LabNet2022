@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tp4.PracticaEF.Logic;
-using Tp4.PracticaEF.Entities;
 
 namespace Tp4.PracticaEF.UI
 {
@@ -12,8 +6,45 @@ namespace Tp4.PracticaEF.UI
     {
         static void Main(string[] args)
         {
-           
-             UI.InitializeMenu();
+
+            UI.ShowMainMenu();
+            var input = Console.ReadLine().ToString().ToUpper();
+            while (input != "N")
+            {
+
+                switch (input)
+                {
+                    case "1":
+                        UI.ShowList(input);
+                        break;
+                    case "2":
+                       UI.ShowList(input);
+                        break;
+                    case "3":
+                        InputHandling.ShippersAddMenu();
+                        break;
+                    case "4":
+                        InputHandling.ShippersDeleteMenu();
+                        break;
+                    case "5":
+                        InputHandling.ShippersUpdateMenu();
+                        break;
+                    case "X":
+                        Console.Clear();
+                        Console.WriteLine("Adios");
+
+                        return;
+                    default:
+                        Console.WriteLine("Por favor ingrese una opcion valida");
+                        break;
+
+                }
+
+                Console.ReadLine();
+                Console.Clear();
+                UI.ShowMainMenu();
+                input = Console.ReadLine().ToString().ToUpper();
+            }
 
             Console.ReadLine();
         }

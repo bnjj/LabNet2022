@@ -15,44 +15,7 @@ namespace Tp4.PracticaEF.UI
        
     public static void InitializeMenu()
         {
-            ShowMainMenu();
-            var input = Console.ReadLine().ToString().ToUpper();
-            while (input != "N")
-            {
-
-                switch (input)
-                {
-                    case "1":
-                        ShowList(input);
-                        break;
-                    case "2":
-                        ShowList(input);
-                        break;
-                    case "3":
-                        InputHandling.ShippersAddMenu();
-                        break;
-                    case "4":
-                       InputHandling.ShippersDeleteMenu();
-                        break;
-                    case "5":
-                        InputHandling.ShippersUpdateMenu();
-                        break;
-                    case "X":
-                        Console.Clear();
-                        Console.WriteLine("Adios");
-
-                        return;
-                    default:
-                        Console.WriteLine("Por favor ingrese una opcion valida");
-                        break;
-
-                }
-
-                Console.ReadLine();
-                Console.Clear();
-                ShowMainMenu();
-                input = Console.ReadLine().ToString().ToUpper();
-            }
+          
 
 
         }
@@ -79,18 +42,20 @@ namespace Tp4.PracticaEF.UI
                 {
                     Console.WriteLine($"|{territories.TerritoryDescription}|    | {territories.TerritoryID} |     | {territories.RegionID}|");
                 }
+                Console.WriteLine("\nPresione enter para continuar...");
 
             }
             else if(input == "2")
             {
                 Console.WriteLine("Por favor espere,procesando datos");
                 ShippersLogic shippersLogic = new ShippersLogic();
-                Console.WriteLine($"ID-Empresa --------- Telefono");
+            
                 foreach (var shippers in shippersLogic.GetAll())
                 {
                     
-                    Console.WriteLine($"-{shippers.ShipperID}-{shippers.CompanyName}-{shippers.Phone}-");
+                    Console.WriteLine($"ID - {shippers.ShipperID} - Empresa - {shippers.CompanyName} - Telefono - {shippers.Phone}");
                 }
+                Console.WriteLine("\nPresione enter para continuar...");
             }
 
         }
