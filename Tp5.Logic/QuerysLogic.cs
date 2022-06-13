@@ -46,7 +46,28 @@ namespace Tp5.Logic
                     select o)
                     .ToList();
         }
+        
+        public List<Customers> FirstThreeCustomersFromWA()
+        {
 
+            return _context.Customers.Take(3).ToList();
+        }
 
+        public List<Products> ProductsOrderedByName()
+        {
+
+            return _context.Products.OrderBy(p => p.ProductName).ToList();
+        }
+
+        public List<Products> ProductsOrderedByStock()
+        {
+
+            return (from p in _context.Products
+                    orderby p.UnitsInStock descending
+                    select p)
+                    .ToList();
+        }
+
+      
     }
 }
