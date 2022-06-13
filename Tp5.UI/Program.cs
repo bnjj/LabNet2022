@@ -84,7 +84,7 @@ namespace Tp5.UI
 
             foreach(var o in ordersWaCustomers)
             {
-               Console.WriteLine(o.ShipRegion+"  "+o.OrderDate);
+               Console.WriteLine(o.ShipName+ "  "+o.ShipRegion+"  "+o.OrderDate);
             
             }
             Console.ReadLine();
