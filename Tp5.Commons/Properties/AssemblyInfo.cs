@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Tp5.Data")]
+[assembly: AssemblyTitle("Tp5.Commons")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Tp5.Data")]
+[assembly: AssemblyProduct("Tp5.Commons")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("afa2926d-b1d8-420d-8479-1b3a855baae0")]
+[assembly: Guid("210576f9-e8c3-48c2-a81e-256767c95de7")]
 
 // Version information for an assembly consists of the following four values:
 //
