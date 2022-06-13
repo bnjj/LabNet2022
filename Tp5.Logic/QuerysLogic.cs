@@ -67,7 +67,11 @@ namespace Tp5.Logic
                     select p)
                     .ToList();
         }
+        public Products ProductsFirstElement()
+        {
+            return _context.Products.First();
+        }
+     
 
-      
     }
 }

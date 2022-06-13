@@ -128,7 +128,14 @@ namespace Tp5.UI
             }
             Console.WriteLine("\nFin Punto 10 Productos ordenados  por stock ");
 
+            Console.WriteLine("Punto 12 primer elemento de lista");
+            var productsFirst = querysLogic.ProductsFirstElement();
 
+          
+                Console.WriteLine(productsFirst.ProductID + " " + productsFirst.ProductName + " " + productsFirst.UnitsInStock + " " + productsFirst.UnitPrice);
+            Console.ReadLine();
+
+            Console.WriteLine("\nFin Punto 12 Primer producto lista ");
             Console.WriteLine("Fin del Programa");
 
 
