@@ -67,11 +67,38 @@ namespace Tp5.Logic
                     select p)
                     .ToList();
         }
+
+        public List<CategoriesDTO> GetCategories()
+        {
+             return _context.Categories.GroupJoin(
+                _context.Products,
+                category => category.CategoryID,
+                product => product.CategoryID,
+                (category,product) =>
+                new CategoriesDTO
+                {
+                    CategoryName = category.CategoryName.ToString()
+                }).ToList();
+        }
+
         public Products ProductsFirstElement()
         {
             return _context.Products.First();
         }
-     
+
+        public List<CustomersDTO> CustomersAssociatedOrders()
+        {
+            return (from o in _context.Orders
+                    join c in _context.Customers on o.CustomerID equals c.CustomerID
+                    group c by new { c.CustomerID, c.CompanyName } into g
+                    select new CustomersDTO
+                    {
+                        Id = g.Key.CustomerID,
+                        Name = g.Key.CompanyName,
+                        OrdersQuantity = g.Count(),
+                    }).ToList();
+        }
+
 
     }
 }

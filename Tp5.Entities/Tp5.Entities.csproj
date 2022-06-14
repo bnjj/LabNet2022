@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories.cs" />
+    <Compile Include="CategoriesDTO.cs" />
     <Compile Include="CustomerDemographics.cs" />
     <Compile Include="Customers.cs" />
+    <Compile Include="CustomersDTO.cs" />
     <Compile Include="Employees.cs" />
     <Compile Include="Orders.cs" />
     <Compile Include="Order_Details.cs" />
