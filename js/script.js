@@ -4,6 +4,7 @@ const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 
+
      
 
 form.addEventListener('submit', e => {
@@ -13,10 +14,14 @@ form.addEventListener('submit', e => {
   
 });
 
-
+function ResetForm()
+{
+    document.getElementById('form').reset(); 
+}
 
 
 function checkInputs() {
+   
 	//  remove the whitespace
     const personNameValue = personName.value.trim(); 
 	const usernameValue = username.value.trim();
@@ -64,58 +69,59 @@ function setSuccessFor(input) {
 }
 	
 function isEmail(email) {
-	return /^(.+)@(.+)$/.test(email);
+	return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
 }
 
 
 function ageCalculator() {
-    //collect input from HTML form and convert into date format
+    //recolectar valores 
     var userinput = document.getElementById("birthdate").value;
     var dob = new Date(userinput);
     
-    //check user provide input or not
+    // Hay input ?
     if(userinput==null || userinput==''){
-      document.getElementById("message").innerHTML = "**Selecciona una fecha por favor";  
+      document.getElementById("result").innerHTML = "Selecciona una fecha por favor";  
       return false; 
     } 
-    
-    //execute if user entered a date 
+    //ejecutar si el usuario ingreso fecha
     else {
-    //extract and collect only date from date-time string
+    //Manejo Date
     var mdate = userinput.toString();
     var dobYear = parseInt(mdate.substring(0,4), 10);
     var dobMonth = parseInt(mdate.substring(5,7), 10);
     var dobDate = parseInt(mdate.substring(8,10), 10);
     
-    //get the current date from system
+    //Fecha actual
     var today = new Date();
-    //date string after broking
+    
     var birthday = new Date(dobYear, dobMonth-1, dobDate);
     
-    //calculate the difference of dates
-    var diffInMillisecond = today.valueOf() - birthday.valueOf();
+    //Calcular diferencia fecha 
+    var differenceInMillisecond = today.valueOf() - birthday.valueOf();
 
-    //convert the difference in milliseconds and store in day and year variable        
-    var year_age = Math.floor(diffInMillisecond / 31536000000);
-    var day_age = Math.floor((diffInMillisecond % 31536000000) / 86400000);
+    //Convertir diferencia en ms a dias y años   
+    var year_age = Math.floor(differenceInMillisecond / 31536000000);
+    var day_age = Math.floor((differenceInMillisecond % 31536000000) / 86400000);
 
-    //when birth date and month is same as today's date      
-    if ((today.getMonth() == birthday.getMonth()) && (today.getDate() == birthday.getDate())) {
+    //Fecha igual a hoy   
+    if ((today.getMonth() == birthday.getMonth()) && (today.getDate() == birthday.getDate())) 
+      {
             alert("Feliz Cumple!");
         }
         
      var month_age = Math.floor(day_age/30);        
      day_age = day_age % 30;
         
-     var tMnt= (month_age + (year_age*12));
-     var tDays =(tMnt*30) + day_age;
+
      
-    //DOB is greater than today?s date, generate an error: Invalid date  
+    //Fecha mayor a hoy 
      if (dob>today) {
         document.getElementById("result").innerHTML = ("Aun no naciste,por favor regresa a tu epoca viajero y no rompas este humilde formulario.");
+        document.getElementById("resultAge").value="";
       }
       else {
-        document.getElementById("result").innerHTML = year_age + " años" + month_age + " meses " + day_age + " dias"
+        document.getElementById("result").innerHTML = year_age + " años " + month_age + " meses " + day_age + " dias";
+        document.getElementById("resultAge").value =year_age;
       }
    }
 }

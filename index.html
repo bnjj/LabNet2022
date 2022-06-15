@@ -10,8 +10,9 @@
 <body>
     <div class="container">
         <div class="header">
+            
             <h2>Contactanos</h2>
-            <p>Llene este formulario para que un asesor se contacte con usted.</p>
+            <p>Llene este formulario para que un profesor particular se contacte con usted.</p>
         </div>
         <form id="form" class="form">
             <div class="form-control">
@@ -31,7 +32,7 @@
             </div>
             <div class="form-control">
                 <label for="email">Email</label>
-                <input type="email" placeholder="juank_elmascapo@falsomail.com" id="email" />
+                <input type="text" placeholder="juank_elmascapo@falsomail.com" id="email" />
               
                 <small>Error message</small>
             </div>
@@ -44,21 +45,24 @@
             <div class="form-control">
                 <label for="birthdate">Fecha de Nacimiento</label>
                 <input type="date"  id="birthdate"/>
-               
+               <input type="button" value="Calcular Edad" onclick = "ageCalculator()">
+               <p id="result"></p> 
+               <label for="age">Edad</label>
+               <input type="number"  id="resultAge" readonly/>
              
             </div>
             <div class="form-control">
-                <label for="age">Edad</label>
-                <input type="number"  id="age"/>
+             
+               <!-- <input type="text"  id="result"/> -->
                 <small>Error message</small>
             
               
             </div>
             
            
-            <button id="submit">Enviar</button>
+            <button class="form__button" id="submit">Enviar</button>
        
-            <button id="clear">Reinicar</button>
+            <input class="form__button" type="button" id="clear" value="Limpiar" onclick="ResetForm()">
           
         </form>
     </div>
