@@ -28,17 +28,44 @@ function checkInputs() {
 	const emailValue = email.value.trim();
 	const passwordValue = password.value.trim();
 
-	if(personNameValue === '') {
+    CheckPersonName(personNameValue);
+    CheckUsername(usernameValue);
+    CheckEmail(emailValue);
+    CheckPassword(passwordValue);
+
+}
+
+
+
+function CheckPersonName(personNameValue){
+    if(personNameValue === '') {
 		setErrorFor(personName, 'Debe ingresar su nombre aqui');
-	} else {
+
+	} 
+     if (!isName(personNameValue)) {
+		setErrorFor(personName, 'Su nombre solo puede tener letras');
+    }
+    else {
 		setSuccessFor(personName);
 	}
-	if(usernameValue === '') {
+}
+
+
+
+function CheckUsername(usernameValue)
+{
+    if(usernameValue === '') {
 		setErrorFor(username, 'Debe ingresar su cuenta aqui');
 	} else {
 		setSuccessFor(username);
 	}
-	
+
+}
+
+
+
+function CheckEmail(emailValue)
+{	
 	if(emailValue === '') {
 		setErrorFor(email, 'Debe ingresar su email aqui');
 	} else if (!isEmail(emailValue)) {
@@ -46,15 +73,22 @@ function checkInputs() {
 	} else {
 		setSuccessFor(email);
 	}
+
+}
+
+
+function CheckPassword(passwordValue)
+{
 	
 	if(passwordValue === '') {
 		setErrorFor(password, 'Debe ingresar su contraseña aqui');
 	} else {
 		setSuccessFor(password);
 	}
-	
-
 }
+
+
+
 
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
@@ -71,6 +105,10 @@ function setSuccessFor(input) {
 function isEmail(email) {
 	return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
 }
+function isName(personName)
+    {
+        return /^[a-zA-Z]+$/.test(personName);
+    }
 
 
 function ageCalculator() {

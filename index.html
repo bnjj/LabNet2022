@@ -8,21 +8,19 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container anim">
         <div class="header">
             
             <h2>Contactanos</h2>
             <p>Llene este formulario para que un profesor particular se contacte con usted.</p>
         </div>
-        <form id="form" class="form">
+        <form id="form" class="form ">
             <div class="form-control">
                 <label for="personname">Nombre</label>
-                <input type="text" placeholder="Juan Carlos" id="personname" />
-               
-               
+                <input type="text" placeholder="Juan Carlos" id="personname"/>
                 <small>Error message</small>
             </div>
-        <form id="form" class="form">
+   
             <div class="form-control">
                 <label for="username">Cuenta de Usuario</label>
                 <input type="text" placeholder="juancarlos123" id="username" />
@@ -45,19 +43,13 @@
             <div class="form-control">
                 <label for="birthdate">Fecha de Nacimiento</label>
                 <input type="date"  id="birthdate"/>
-               <input type="button" value="Calcular Edad" onclick = "ageCalculator()">
+               <input type="button" value="Calcular Edad" class="form__button" onclick = "ageCalculator()">
                <p id="result"></p> 
                <label for="age">Edad</label>
                <input type="number"  id="resultAge" readonly/>
              
             </div>
-            <div class="form-control">
-             
-               <!-- <input type="text"  id="result"/> -->
-                <small>Error message</small>
-            
-              
-            </div>
+       
             
            
             <button class="form__button" id="submit">Enviar</button>

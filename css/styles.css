@@ -93,7 +93,7 @@ body {
 }
 
 .form-control small {
-	color:var(--ColorSuccess) ;
+	color:var(--ColorError);
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -116,6 +116,11 @@ body {
 	margin-top: 20px;
 	width: 100%;
 }
+.form__button:hover 
+{
+    transition: all ease-in-out 0.2s;
+    transform: scale(1.1);
+}
 
 /* Quitar flechas de number input */
 /* Chrome, Safari, Edge, Opera */
@@ -133,3 +138,10 @@ input[type=number] {
 
 
 
+.anim{
+    animation: fadeIn ease-in 2s;   
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
