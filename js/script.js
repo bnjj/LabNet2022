@@ -3,11 +3,13 @@ const personName = document.getElementById('personname');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
+const age = document.getElementById('age');
 
 
      
 
 form.addEventListener('submit', e => {
+   
 	e.preventDefault();
  
 	checkInputs();
@@ -27,11 +29,13 @@ function checkInputs() {
 	const usernameValue = username.value.trim();
 	const emailValue = email.value.trim();
 	const passwordValue = password.value.trim();
+    const ageValue= age.value.trim();
 
     CheckPersonName(personNameValue);
     CheckUsername(usernameValue);
     CheckEmail(emailValue);
     CheckPassword(passwordValue);
+    CheckAge(ageValue);
 
 }
 
@@ -82,12 +86,26 @@ function CheckPassword(passwordValue)
 	
 	if(passwordValue === '') {
 		setErrorFor(password, 'Debe ingresar su contraseña aqui');
-	} else {
+	} 
+   
+    else {
 		setSuccessFor(password);
 	}
 }
 
-
+function CheckAge(ageValue)
+{
+    if(ageValue === ''){
+		setErrorFor(age, 'Debe calcular  su edad ');
+	}
+    else 
+    if (ageValue< 10) {
+		setErrorFor(age, 'Desde  11 a 99 (presione enviar para recalcular)');
+    }
+    else {
+		setSuccessFor(age);
+	}
+}
 
 
 function setErrorFor(input, message) {
@@ -119,6 +137,7 @@ function ageCalculator() {
     // Hay input ?
     if(userinput==null || userinput==''){
       document.getElementById("result").innerHTML = "Selecciona una fecha por favor";  
+      document.getElementById("age").value="";
       return false; 
     } 
     //ejecutar si el usuario ingreso fecha
@@ -154,12 +173,13 @@ function ageCalculator() {
      
     //Fecha mayor a hoy 
      if (dob>today) {
+        document.getElementById("age").value="";
         document.getElementById("result").innerHTML = ("Aun no naciste,por favor regresa a tu epoca viajero y no rompas este humilde formulario.");
-        document.getElementById("resultAge").value="";
+      
       }
       else {
         document.getElementById("result").innerHTML = year_age + " años " + month_age + " meses " + day_age + " dias";
-        document.getElementById("resultAge").value =year_age;
+        document.getElementById("age").value =year_age;
       }
    }
 }

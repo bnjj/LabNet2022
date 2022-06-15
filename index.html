@@ -43,11 +43,16 @@
             <div class="form-control">
                 <label for="birthdate">Fecha de Nacimiento</label>
                 <input type="date"  id="birthdate"/>
-               <input type="button" value="Calcular Edad" class="form__button" onclick = "ageCalculator()">
+               <input type="button" value="Calcular Edad" class="form__button" onclick = "ageCalculator()" min="1922-01-01">
                <p id="result"></p> 
-               <label for="age">Edad</label>
-               <input type="number"  id="resultAge" readonly/>
+              
+
+            </div>
+            <div class="form-control">
              
+                <label for="age">Edad</label>
+                <input type="number"  id="age" readonly/>
+                <small>Error message</small>
             </div>
        
             
