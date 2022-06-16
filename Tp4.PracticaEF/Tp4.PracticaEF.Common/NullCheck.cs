@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Tp4.PracticaEF.Commons
 {
-   public class Methods
+    public class Methods
     {
-        public static void NullCheck(object x,string typeOfCheck)
+        public static void NullCheck(object x)
         {
-            if(typeOfCheck=="idCheck")
-            {
+            
+            
                 if (x == null)
                 {
                     throw new CustomException("No se encontro un Id que coincida con el ingresado");
                 }
-            }
-            
+           
+
         }
 
 

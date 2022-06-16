@@ -19,67 +19,66 @@ namespace Tp4.PracticaEF.Logic
         {
             return _context.Shippers.ToList();
         }
-        public void Add(Shippers newShipper)
+        public bool Add(Shippers newShipper)
+
         {
-            
+           
             try
             {
                 _context.Shippers.Add(newShipper);
-                Methods.NullCheck(newShipper.CompanyName, "nullCheck");
+                Methods.NullCheck(newShipper.CompanyName);
                 _context.SaveChanges();
+                return  true;
             }
             
-            catch(Exception ex)
+            catch
             {
-                Console.WriteLine("No se puede dejar vacio un campo requerido",ex);
+                 return  false;
             }
         }
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             
             var shipperToDelete = _context.Shippers.Find(id);
           
 
             try {
-                Methods.NullCheck(shipperToDelete,"idCheck");
+                Methods.NullCheck(shipperToDelete);
                 _context.Shippers.Remove(shipperToDelete);
                 _context.SaveChanges();
-                Console.WriteLine("Se borro el campo con exito");
+                return true;
 
             }
-            catch(System.Data.Entity.Infrastructure.DbUpdateException ex)
+            //what do(System.Data.Entity.Infrastructure.DbUpdateException ex) 
+           
+            catch
             {
-                Console.WriteLine("Esta entrada no se puede borrar debido a su relacion con una Foreign Key");
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                return false;
             }
            
             
         }
-        public void Update(Shippers shipper)
+        public  bool Update(Shippers shipper)
         {
 
-
+          
             var shipperToUpdate = _context.Shippers.Find(shipper.ShipperID);
             
                 try
                 {
-                Methods.NullCheck(shipperToUpdate,"idCheck");
-                shipperToUpdate.CompanyName = shipper.CompanyName;
-                shipperToUpdate.Phone = shipper.Phone;
-                    _context.SaveChanges();
-                    Console.WriteLine("Se Actualizo el campo con exito");
+                Methods.NullCheck(shipperToUpdate);
+                  
+                    shipperToUpdate.CompanyName = shipper.CompanyName;
+                    shipperToUpdate.Phone = shipper.Phone;
 
+                    _context.SaveChanges();
+                    return true;
                 }
-                catch(CustomException ex)
-                {
-                Console.WriteLine(ex.Message);
-                }
+               
                 catch
                 {
-                Console.WriteLine("No se puede dejar vacio un campo requerido");
+               
+                    return false;
                 }
                 
         }

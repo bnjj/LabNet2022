@@ -10,12 +10,12 @@ namespace Tp4.PracticaEF.UI
 {
     public class UI
     {
-      
 
-       
-    public static void InitializeMenu()
+
+
+        public static void InitializeMenu()
         {
-          
+
 
 
         }
@@ -32,11 +32,11 @@ namespace Tp4.PracticaEF.UI
         }
         public static void ShowList(string input)
         {
-            if(input == "1")
+            if (input == "1")
             {
                 Console.WriteLine("Por favor espere,procesando datos");
                 TerritoriesLogic territoriesLogic = new TerritoriesLogic();
-              
+
                 Console.WriteLine("Descripcion ========================================= TerritoryID == RegionID");
                 foreach (var territories in territoriesLogic.GetAll())
                 {
@@ -45,14 +45,14 @@ namespace Tp4.PracticaEF.UI
                 Console.WriteLine("\nPresione enter para continuar...");
 
             }
-            else if(input == "2")
+            else if (input == "2")
             {
                 Console.WriteLine("Por favor espere,procesando datos");
                 ShippersLogic shippersLogic = new ShippersLogic();
-            
+
                 foreach (var shippers in shippersLogic.GetAll())
                 {
-                    
+
                     Console.WriteLine($"ID - {shippers.ShipperID} - Empresa - {shippers.CompanyName} - Telefono - {shippers.Phone}");
                 }
                 Console.WriteLine("\nPresione enter para continuar...");
@@ -60,7 +60,27 @@ namespace Tp4.PracticaEF.UI
 
         }
 
-      
+
+        public static void OperationState(bool OperationSuccess, string OperationType)
+        {
+
+
+
+
+            if (OperationSuccess)
+            {
+                Console.WriteLine("Se completo la operacion {0} con exito", OperationType);
+            }
+
+
+            else
+            {
+                Console.WriteLine("no se completo la operacion {0} con exito", OperationType);
+                //Proximo paso integrar un case que maneje error por error . 
+            }
+        }
+
+
 
     }
 }

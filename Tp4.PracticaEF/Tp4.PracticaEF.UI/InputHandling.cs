@@ -22,12 +22,13 @@ namespace Tp4.PracticaEF.UI
 
 
 
-            shippersLogic.Add(new Shippers
+            bool addSuccess= shippersLogic.Add(new Shippers
             {
                 CompanyName = companyName,
                 Phone = phone
             });
 
+            UI.OperationState(addSuccess,"Agregar");
 
         }
         public static void ShippersDeleteMenu()
@@ -35,35 +36,40 @@ namespace Tp4.PracticaEF.UI
             ShippersLogic shippersLogic = new ShippersLogic();
 
             Console.WriteLine("Ingrese el ID que le gustaria buscar y borrar");
-            try //falta personalizar id no encontrado o no ingresado
-            {
+            bool deleteSuccess=false;
+                try
+                { 
                 int id = int.Parse(Console.ReadLine());
                 Console.WriteLine("Por favor espere,procesando datos");
-                shippersLogic.Delete(id);
+                deleteSuccess = shippersLogic.Delete(id);
+                }
+                catch
+                {
+                 Console.WriteLine("Error,Ingrese un ID ");
+                }
+
+                 UI.OperationState(deleteSuccess, "Borrar");
              
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+          
+            
 
         }
         public static void ShippersUpdateMenu()
         {
-            bool ParseSuccess;
+            bool parseSuccess;
 
 
-            Console.WriteLine("Ingrese El ID del Shipper a actualizar");
+             Console.WriteLine("Ingrese El ID del Shipper a actualizar");
            
-              ParseSuccess = int.TryParse(Console.ReadLine(), out int shipperID);
+              parseSuccess = int.TryParse(Console.ReadLine(), out int shipperID);
             
-            while (ParseSuccess !=true)
+            while (parseSuccess !=true)
             {
                 Console.Clear();
                 Console.WriteLine("Debe ingresar un Numero ID");
                 Console.WriteLine("Ingrese El ID del Shipper a actualizar");
 
-                ParseSuccess = int.TryParse(Console.ReadLine(), out  shipperID);
+                parseSuccess = int.TryParse(Console.ReadLine(), out  shipperID);
 
             }
 
@@ -72,30 +78,18 @@ namespace Tp4.PracticaEF.UI
             string companyName = Console.ReadLine();
             Console.WriteLine("Ingrese el telefono (puede omitir este campo o rellenarlo luego)");
                 var phone= Console.ReadLine();
-            
-          
-            
 
             ShippersLogic shippersLogic = new ShippersLogic();
             Console.WriteLine("Por favor espere,procesando datos");
 
-            shippersLogic.Update(new Shippers
-            {
-                
+            bool updateSuccess= shippersLogic.Update(new Shippers
+            { 
                 ShipperID = shipperID,
-                    
                 CompanyName = companyName,
                 Phone = phone
-
             });
-            
 
-
-
-
-
-
-
+            UI.OperationState(updateSuccess,"Actualizar");
         }
     }
 }
