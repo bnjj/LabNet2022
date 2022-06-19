@@ -1,0 +1,41 @@
+﻿@model List<Tp4.PracticaEF.MVC.Models.ShippersView>
+
+@{
+    ViewBag.Title = "Shippers Page";
+}
+<h1> Shippers Index</h1>
+
+<table class="table">
+
+    <thead>
+        <tr>
+
+            <th scope="col">ID</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Accion</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shipper in Model)
+        {
+        <tr>
+            <th scope="row">@shipper.Id</th>
+            <td>@shipper.Description</td>
+            <td>@shipper.Phone</td>
+            <td> @Html.ActionLink("Borrar", "Delete", new { id = shipper.Id })</td>
+            <td> @Html.ActionLink("Actualizar", "Update",shipper)</td>
+
+        </tr>
+        }
+    </tbody>
+
+
+</table>
+
+<div>
+     @Html.ActionLink("Insertar Nuevo Shipper","Insert","Shippers")
+</div>
+
+   

@@ -1,0 +1,21 @@
+﻿@model Tp4.PracticaEF.MVC.Models.ShippersView
+@{
+    ViewBag.Title = "Ingrese Datos del Shipper.";
+}
+
+<h1>InsertUpdate testing.</h1>
+
+@using (Html.BeginForm("InsertUpdate", "Shippers", FormMethod.Post))
+{
+    @Html.HiddenFor(s =>s.Id)
+    <label>Empresa:</label>
+    @Html.TextBoxFor(s => s.Description)
+    <label>Telefono:</label>
+    @Html.TextBoxFor(s => s.Phone)
+    <input type="submit" class="btn btn-success" value="Guardar" />
+}
+
+
+
+
+
