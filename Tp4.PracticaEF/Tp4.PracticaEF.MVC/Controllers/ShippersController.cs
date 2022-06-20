@@ -34,6 +34,7 @@ namespace Tp4.PracticaEF.MVC.Controllers
         public ActionResult Delete(int id)
         {
             shippersLogic.Delete(id);
+            
             return RedirectToAction("Index");
         }
 
@@ -53,6 +54,7 @@ namespace Tp4.PracticaEF.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+
               
                 if (shippersView.Id <= 0)
                 {
@@ -62,6 +64,8 @@ namespace Tp4.PracticaEF.MVC.Controllers
                         Phone = shippersView.Phone
                     };
                     shippersLogic.Add(shippersEntity);
+
+                   
                 }
                
                 else
@@ -73,14 +77,15 @@ namespace Tp4.PracticaEF.MVC.Controllers
                         Phone = shippersView.Phone
                     };
                     shippersLogic.Update(shippersEntity);
-                }
                
+
+                }
                 return RedirectToAction("Index");
             }
             else
             {
                 
-            //Si hay error y se debe volver al sitio
+       
                 if (shippersView.Id <= 0)
                 {
                    

@@ -20,22 +20,23 @@
     <tbody>
         @foreach (var shipper in Model)
         {
-        <tr>
-            <th scope="row">@shipper.Id</th>
-            <td>@shipper.CompanyName</td>
-            <td>@shipper.Phone</td>
-            <td> @Html.ActionLink("Borrar", "Delete", new { id = shipper.Id })</td>
-            <td> @Html.ActionLink("Actualizar", "Update",shipper)</td>
+            <tr>
+                <th scope="row">@shipper.Id</th>
+                <td>@shipper.CompanyName</td>
+                <td>@shipper.Phone</td>
+                <td> @Html.ActionLink("Borrar", "Delete", new { id = shipper.Id })</td>
+                <td> @Html.ActionLink("Actualizar", "Update", shipper)</td>
 
-        </tr>
+            </tr>
         }
     </tbody>
-
+   
 
 </table>
-
+ 
 <div>
-     @Html.ActionLink("Insertar Nuevo Shipper","Insert","Shippers")
+    <label>Operacion :</label> 
+    @Html.ActionLink("Insertar Nuevo Shipper", "Insert", "Shippers")
 </div>
 
    
