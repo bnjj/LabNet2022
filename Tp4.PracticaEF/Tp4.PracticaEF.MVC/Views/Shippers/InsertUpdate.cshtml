@@ -1,4 +1,7 @@
-﻿@model Tp4.PracticaEF.MVC.Models.ShippersView
+﻿
+
+
+@model Tp4.PracticaEF.MVC.Models.ShippersView
 @{
     ViewBag.Title = "Ingrese Datos del Shipper.";
 }
@@ -7,11 +10,22 @@
 
 @using (Html.BeginForm("InsertUpdate", "Shippers", FormMethod.Post))
 {
-    @Html.HiddenFor(s =>s.Id)
+
+    @Html.HiddenFor(s => s.Id)
+
     <label>Empresa:</label>
-    @Html.TextBoxFor(s => s.Description)
+    @Html.TextBoxFor(s => s.CompanyName)
+    <br>
+    @Html.ValidationMessageFor(s => s.CompanyName, "", new { @class = "text-danger" })
+    <br>
+
     <label>Telefono:</label>
+
     @Html.TextBoxFor(s => s.Phone)
+    <br>
+    @Html.ValidationMessageFor(s => s.Phone, "", new { @class = "text-danger" })
+
+    <br>
     <input type="submit" class="btn btn-success" value="Guardar" />
 }
 

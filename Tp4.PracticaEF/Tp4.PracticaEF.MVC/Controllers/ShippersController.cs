@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Tp4.PracticaEF.Logic;
 using Tp4.PracticaEF.Entities;
+using Tp4.PracticaEF.Logic;
 using Tp4.PracticaEF.MVC.Models;
 
 namespace Tp4.PracticaEF.MVC.Controllers
@@ -21,7 +19,7 @@ namespace Tp4.PracticaEF.MVC.Controllers
             List<ShippersView> shippersView = shippers.Select(s => new ShippersView
             {
                 Id = s.ShipperID,
-                Description = s.CompanyName,
+                CompanyName = s.CompanyName,
                 Phone = s.Phone,
             }).ToList();
             return View(shippersView);
@@ -60,7 +58,7 @@ namespace Tp4.PracticaEF.MVC.Controllers
                 {
                     Shippers shippersEntity = new Shippers
                     {
-                        CompanyName = shippersView.Description,
+                        CompanyName = shippersView.CompanyName,
                         Phone = shippersView.Phone
                     };
                     shippersLogic.Add(shippersEntity);
@@ -71,7 +69,7 @@ namespace Tp4.PracticaEF.MVC.Controllers
                     Shippers shippersEntity = new Shippers
                     {
                         ShipperID = shippersView.Id,
-                        CompanyName = shippersView.Description,
+                        CompanyName = shippersView.CompanyName,
                         Phone = shippersView.Phone
                     };
                     shippersLogic.Update(shippersEntity);
@@ -79,8 +77,21 @@ namespace Tp4.PracticaEF.MVC.Controllers
                
                 return RedirectToAction("Index");
             }
+            else
+            {
+                
+            //Si hay error y se debe volver al sitio
+                if (shippersView.Id <= 0)
+                {
+                   
+                    return View("InsertUpdate");
 
-            return RedirectToAction("Index");
+                }
+                 else
+                {
+                    return View("InsertUpdate",shippersView);
+                }
+            }
         }
 
 
