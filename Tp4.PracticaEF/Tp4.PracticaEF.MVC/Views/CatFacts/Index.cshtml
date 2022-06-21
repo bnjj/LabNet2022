@@ -1,0 +1,36 @@
+﻿@model List<Tp4.PracticaEF.MVC.Models.Datum>
+
+@{
+    ViewBag.Title = "Cats Facts Page";
+}
+<h1>Cat Index</h1>
+
+<table class="table">
+
+    <thead>
+        <tr>
+
+            <th scope="col">ID</th>
+            <th scope="col">Fact</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var facts in Model)
+        {
+        <tr>
+            <td>@facts.Fact</td>
+        </tr>
+        }
+    </tbody>
+
+
+    </table>
+
+<div>
+  
+
+</div>
+
+
