@@ -21,6 +21,8 @@ namespace Tp4.PracticaEF.API.Controllers
         public IHttpActionResult Get() //funciona
 
         {
+            try
+            {  
             ShippersLogic shippersLogic = new ShippersLogic();
             List<Shippers> shippers = shippersLogic.GetAll();
             List<ShippersView> shippersView = shippers.Select(s => new ShippersView
@@ -30,6 +32,11 @@ namespace Tp4.PracticaEF.API.Controllers
                 Phone = s.Phone,
             }).ToList();
             return Ok(shippersView);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete]
@@ -49,7 +56,7 @@ namespace Tp4.PracticaEF.API.Controllers
             }
             else
             {
-                return BadRequest("Id no encontrado");
+                return Content(HttpStatusCode.NotFound, "No se encontro el id,");
             }
         }
 
@@ -112,15 +119,15 @@ namespace Tp4.PracticaEF.API.Controllers
                     { 
                     return Ok(shippersEntity);
                     }
-                    else
+                    else 
                     {
-                        return BadRequest("No se encontro el Id");
+                        return Content(HttpStatusCode.NotFound,"No se encontro el id,");
                     }
 
                 }
-                catch
+                catch(Exception ex)
                 {
-                    return BadRequest("Hubo un problema en la ejecucion de la request");
+                    return Content(HttpStatusCode.NotFound,ex.Message);
                 }
             }
            
