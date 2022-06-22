@@ -4,10 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using Tp4.PracticaEF.API.Models;
 using Tp4.PracticaEF.Entities;
 using Tp4.PracticaEF.Logic;
-using Tp4.PracticaEF.MVC.Models;
+
 using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 
 namespace Tp4.PracticaEF.API.Controllers
@@ -18,7 +18,7 @@ namespace Tp4.PracticaEF.API.Controllers
         readonly ShippersLogic shippersLogic = new ShippersLogic();
         // GET: Shippers
         [HttpGet]
-        public IHttpActionResult Get()
+        public IHttpActionResult Get() //funciona
 
         {
             ShippersLogic shippersLogic = new ShippersLogic();
@@ -32,12 +32,45 @@ namespace Tp4.PracticaEF.API.Controllers
             return Ok(shippersView);
         }
 
-        
-        public IHttpActionResult Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Delete(int id) //funciona
         {
             shippersLogic.Delete(id);
 
-            return Ok();
+            return Ok("Se elimino el id ingresado");
+        }
+
+        [HttpPost]
+
+        public IHttpActionResult Post([FromUri] ShippersView  shippersView)
+        {
+            
+          
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("No se pudo agregar");
+            }
+            else
+            {
+
+                try
+                {
+
+                    Shippers shippersEntity = new Shippers
+                    {
+                        
+                        CompanyName = shippersView.CompanyName,
+                        Phone = shippersView.Phone
+                    };
+                    shippersLogic.Add(shippersEntity);
+                   
+                   return Ok(shippersEntity);
+                }
+                catch
+                {
+                  return BadRequest("No se pudo agregar");
+                }
+            }
         }
 
    
@@ -47,55 +80,8 @@ namespace Tp4.PracticaEF.API.Controllers
 
 
 
-        [HttpPost]
-        public IHttpActionResult InsertUpdate(ShippersView shippersView)
-        {
-            if (ModelState.IsValid)
-            {
-
-
-                if (shippersView.Id <= 0)
-                {
-                    Shippers shippersEntity = new Shippers
-                    {
-                        CompanyName = shippersView.CompanyName,
-                        Phone = shippersView.Phone
-                    };
-                    shippersLogic.Add(shippersEntity);
-
-
-                }
-
-                else
-                {
-                    Shippers shippersEntity = new Shippers
-                    {
-                        ShipperID = shippersView.Id,
-                        CompanyName = shippersView.CompanyName,
-                        Phone = shippersView.Phone
-                    };
-                    shippersLogic.Update(shippersEntity);
-
-
-                }
-                return Ok();
-            }
-            else
-            {
-
-
-                if (shippersView.Id <= 0)
-                {
-
-                    return Ok();
-
-                }
-                else
-                {
-                    return Ok(shippersView);
-                }
-            }
-        }
+      
+        
 
 
 
