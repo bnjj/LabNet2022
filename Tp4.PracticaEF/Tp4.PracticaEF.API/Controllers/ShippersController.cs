@@ -35,9 +35,22 @@ namespace Tp4.PracticaEF.API.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id) //funciona
         {
-            shippersLogic.Delete(id);
+            if (id < 0)
+            {
+                return BadRequest("Id negativo ");
+                
+            }
+           
+            bool Deleted= shippersLogic.Delete(id);
 
+            if (Deleted)
+            { 
             return Ok("Se elimino el id ingresado");
+            }
+            else
+            {
+                return BadRequest("Id no encontrado");
+            }
         }
 
         [HttpPost]
@@ -48,7 +61,7 @@ namespace Tp4.PracticaEF.API.Controllers
           
             if (!ModelState.IsValid)
             {
-                return BadRequest("No se pudo agregar");
+                return BadRequest("El Modelo no es valido.(Campo requerido vacio o formato incorrecto)");
             }
             else
             {
@@ -73,6 +86,45 @@ namespace Tp4.PracticaEF.API.Controllers
             }
         }
 
+        [HttpPut]
+
+        public IHttpActionResult Put([FromUri]ShippersView shippersView)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("El Modelo no es valido.(Campo requerido vacio o formato incorrecto)");
+            }
+            else
+            {
+                try
+                {
+
+              
+                    Shippers shippersEntity = new Shippers
+                    {
+                        ShipperID = shippersView.Id,
+                        CompanyName = shippersView.CompanyName,
+                        Phone = shippersView.Phone
+                    };
+                    bool Updated =  shippersLogic.Update(shippersEntity);
+
+                    if(Updated)
+                    { 
+                    return Ok(shippersEntity);
+                    }
+                    else
+                    {
+                        return BadRequest("No se encontro el Id");
+                    }
+
+                }
+                catch
+                {
+                    return BadRequest("Hubo un problema en la ejecucion de la request");
+                }
+            }
+           
+        }
    
 
 
