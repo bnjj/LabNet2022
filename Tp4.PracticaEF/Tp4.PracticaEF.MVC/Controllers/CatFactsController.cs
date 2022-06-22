@@ -17,19 +17,13 @@ namespace Tp4.PracticaEF.MVC.Controllers
         public async Task<ActionResult> Index()
         {   
             var client = new HttpClient();
-            var json=await client.GetStringAsync("https://catfact.ninja/facts");
+            var json=await client.GetStringAsync("https://catfact.ninja/facts?limit=20&max_length=140");
              
               Root catFacts = JsonConvert.DeserializeObject<Root>(json);
-
-
-
-
-
-
-
-
+              
             return View("Index",catFacts.Data);
 
         }
+      
     }
 }
