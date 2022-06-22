@@ -17,8 +17,7 @@ namespace Tp4.PracticaEF.API.Controllers
         readonly ShippersLogic shippersLogic = new ShippersLogic();
         // GET: Shippers
         [HttpGet]
-        public IHttpActionResult Get() //funciona
-
+        public IHttpActionResult Get() 
         {
             try
             {  
@@ -39,14 +38,10 @@ namespace Tp4.PracticaEF.API.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult Delete(int id) //funciona
+        public IHttpActionResult Delete(int id) 
         {
-            if (id < 0)
-            {
-                return BadRequest("Id negativo ");
-                
-            }
            
+            
             bool Deleted= shippersLogic.Delete(id);
 
             if (Deleted)
@@ -55,8 +50,10 @@ namespace Tp4.PracticaEF.API.Controllers
             }
             else
             {
-                return Content(HttpStatusCode.NotFound, "No se encontro el id,");
+                return Content(HttpStatusCode.NotFound,"No se encontro el id,");
             }
+            
+         
         }
 
         [HttpPost]

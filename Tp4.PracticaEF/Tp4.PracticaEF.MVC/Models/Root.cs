@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Tp4.PracticaEF.MVC.Models
 {
-    
+
     public class Root
     {
         [JsonProperty("current_page")]
@@ -37,7 +37,7 @@ namespace Tp4.PracticaEF.MVC.Models
         public string Path { get; set; }
 
         [JsonProperty("per_page")]
-        public int PerPage { get; set; }
+        public string PerPage { get; set; }
 
         [JsonProperty("prev_page_url")]
         public object PrevPageUrl { get; set; }
@@ -48,6 +48,7 @@ namespace Tp4.PracticaEF.MVC.Models
         [JsonProperty("total")]
         public int Total { get; set; }
     }
+
 
 
 

@@ -1,26 +1,32 @@
 ﻿@model List<Tp4.PracticaEF.MVC.Models.Datum>
 
 @{
-    ViewBag.Title = "Api Cats Facts";
+    ViewBag.Title = "Api Cats Breeds";
 }
-<h1>Cat Facts</h1>
+<h1>Cat Breeds and Info</h1>
 
 <table class="table">
 
     <thead>
         <tr>
 
-            
-            <th scope="col">Fact</th>
+
+            <th scope="col">Breed</th>
+            <th scope="col">Country</th>
+            <th scope="col">Coat</th>
+            <th scope="col">Pattern</th>
 
 
         </tr>
     </thead>
     <tbody>
-        @foreach (var facts in Model)
+        @foreach (var catsData in Model)
         {
         <tr>
-            <td>@facts.Fact</td>
+            <td>@catsData.Breed</td>
+            <td>@catsData.Country</td>
+            <td>@catsData.Coat</td>
+            <td>@catsData.Pattern</td>
         </tr>
         }
     </tbody>
