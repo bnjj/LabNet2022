@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Tp4.PracticaEF.API.Models;
 using Tp4.PracticaEF.Entities;
 using Tp4.PracticaEF.Logic;
@@ -11,6 +12,8 @@ using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 
 namespace Tp4.PracticaEF.API.Controllers
 {
+
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ShippersController : ApiController
     {
 
@@ -57,8 +60,9 @@ namespace Tp4.PracticaEF.API.Controllers
         }
 
         [HttpPost]
+       
 
-        public IHttpActionResult Post([FromUri] ShippersView  shippersView)
+        public IHttpActionResult Post( ShippersView  shippersView)
         {
             
           
@@ -91,7 +95,7 @@ namespace Tp4.PracticaEF.API.Controllers
 
         [HttpPut]
 
-        public IHttpActionResult Put([FromUri]ShippersView shippersView)
+        public IHttpActionResult Put(ShippersView shippersView)
         {
             if (!ModelState.IsValid)
             {
