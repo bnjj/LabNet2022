@@ -1,0 +1,112 @@
+
+
+
+
+<div  class="container " >
+    <div class="row"  id="formDiv">
+        <form  [hidden]="hideNewForm" [formGroup]="formNewShipper"  >
+            <div class="form-group">
+              <label for="nombre">Empresa de envios.</label>
+              <input type="text"  class="form-control" formControlName="nombre"  placeholder="Nombre de la empresa de envios.">
+                
+              <div *ngIf="formNewShipper.get('nombre')?.errors?.['required'] && (formNewShipper.get('nombre')?.touched || formNewShipper.get('nombre')?.dirty) " class="alert alert-danger">
+                Este campo no puede dejarse vacio.
+              </div>
+              <div *ngIf="formNewShipper.get('nombre')?.errors?.['maxlength']" class="alert alert-danger">
+                Este campo no puede tener mas de 40 caracteres
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Telefono (Opcional)</label>
+             <input type="text" class="form-control" formControlName="telefono"  placeholder="0123-3244356-234">
+             <div *ngIf="formNewShipper.get('telefono')?.errors?.['maxlength']" class="alert alert-danger"> 
+              Este campo no puede tener mas de 24 caracteres 
+             </div> 
+             <div *ngIf="formNewShipper.get('telefono')?.errors?.['pattern']" class="alert alert-danger"> 
+               Solo puede ingresar numeros y guiones.
+             </div> 
+             
+            </div>
+           
+            <button  class="btn btn-primary" [disabled]="this.formNewShipper.invalid" (click)="NewFormSubmit()">Guardar</button>
+           
+            </form>
+          
+
+        
+    </div>
+    <div class="row">
+   
+   
+ <table class="table" >
+    <thead>
+        <tr>
+
+            <th scope="col">ID</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Accion</th>
+       
+        
+            
+        </tr>
+    </thead>
+    <tbody>
+        
+     
+        <tr  *ngFor="let item of shippers">
+      
+            <td>{{item.Id}}</td>
+            <td>{{item.CompanyName}}</td>
+            <td>{{item.Phone}}</td>
+           
+            <td>
+
+             <td>
+                <button  class="btn btn-primary"   (click)="ShowEditForm(item.Id)">Edit</button>
+              </td>
+            
+              <td>
+                <button class="btn btn-primary" (click)="deleteShippersLogic(item.Id)">Delete</button>
+              </td>
+            <td>
+           
+              <form  *ngIf="flag == item.Id"   [hidden]="hideEditForm"  [formGroup]="formEditShipper"  >
+             <td>
+                  <label for="nombre">Empresa de envios.</label>
+                  <input type="text"  class="form-control" formControlName="nombre"  placeholder="Nombre de la empresa de envios.">
+                  <small *ngIf="formEditShipper.get('nombre')?.errors?.['required'] && (formEditShipper.get('nombre')?.touched || formEditShipper.get('nombre')?.dirty) " >
+                    Este campo no puede dejarse vacio.
+                  </small>
+                </td>
+                <td>
+                  <label for="telefono">Telefono (Opcional)</label>
+                  <input type="text" class="form-control" formControlName="telefono"  placeholder="0123-3244356-234">
+                  <small *ngIf="formEditShipper.get('telefono')?.errors?.['maxlength']" > 
+                    Este campo no puede tener mas de 24 caracteres 
+                   </small> 
+                   <small *ngIf="formEditShipper.get('telefono')?.errors?.['pattern']" > 
+                     Solo puede ingresar numeros y guiones.
+                   </small> 
+                </td>
+                <td>
+                <button  class="btn btn-primary" [disabled]="this.formEditShipper.invalid" (click)="editShippersLogic(item.Id)">Guardar</button>
+              </td>
+             
+   
+              </form>
+          
+             </td>
+           
+         
+            
+        </tr>
+    </tbody>
+    <button class="btn btn-primary" (click)="ShowNewForm()">Agregar un Shipper</button>
+  
+
+ </table>
+
+    </div>
+</div>
